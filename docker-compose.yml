@@ -2,7 +2,7 @@ version: "2"
 
 services:
   vote:
-    build: ./vote
+    image: vote_vote:dev
     command: python app.py
     ports:
       - "5000:80"
@@ -11,7 +11,7 @@ services:
       - back-tier
 
   result:
-    build: ./result
+    image: vote_result:dev
     command: nodemon --debug server.js
     ports:
       - "5001:80"
@@ -21,7 +21,7 @@ services:
       - back-tier
 
   worker:
-    build: ./worker
+    image: vote_worker:dev
     networks:
       - back-tier
 
