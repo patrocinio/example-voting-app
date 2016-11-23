@@ -1,7 +1,7 @@
 cd vote
-docker build -t vote_vote:dev .
+docker build -t patrocinio/vote_vote:test .
 cd ../result
-docker build -t vote_result:dev .
+docker build -t patrocinio/vote_result:test .
 cd ../worker
-docker build -t vote_worker:dev .
+docker build -t patrocinio/vote_worker:test .
 
