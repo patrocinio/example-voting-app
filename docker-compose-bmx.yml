@@ -1,0 +1,37 @@
+version: "2"
+
+services:
+  vote:
+    build: ./vote
+    image: ${DTR}/vote_vote:${ENV}
+    command: python app.py
+    links:
+      - redis
+    ports:
+      - "5000:80"
+
+  result:
+    build: ./result
+    image: ${DTR}/vote_result:${ENV}
+    command: nodemon --debug server.js
+    links:
+      - db
+    ports:
+      - "5001:80"
+      - "5858:5858"
+
+  worker:
+    build: ./worker
+    image: ${DTR}/vote_worker:${ENV}
+    links:
+      - db
+      - redis
+
+  redis:
+    image: ${DTR}/redis:alpine
+    container_name: redis
+    ports: ["6379"]
+
+  db:
+    image: ${DTR}/postgres:9.4
+    container_name: db

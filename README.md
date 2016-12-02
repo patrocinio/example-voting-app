@@ -25,15 +25,24 @@ Architecture
 
 #test
 
+## Running on Bluemix
 
+Some additional steps are required to run this application on the Bluemix Container Service, using the Docker Compose client.
 
+1.  Set your Docker environment variables to point to the Bluemix Container Service.  
+`eval $(cf ic init | grep "export DOCKER")`  
 
+2.  Set the correct Docker Registry endpoint.  
+`export DTR="registry.ng.bluemix.net/$(cf ic namespace get)"`  
 
+3.  Copy over the necessary images that are not built using this example  
+`cf ic cpi redis:alpine ${DTR}/redis:alpine`  
+`cf ic cpi postgres:9.4 ${DTR}/postgres:9.4`  
 
+4.  Run Docker Compose to start your applications  
+`docker-compose -f docker-compose-bmx.yml build`  
+`docker-compose -f docker-compose-bmx.yml up -d`  
 
-
-
-
-
-
-
+5.  Attach public IP addresses to the Vote and Result container instances  
+`cf ic ip request`  
+`cf ic ip bind [RETURNED_IP_ADDRESS] examplevotingapp_vote_1`  
