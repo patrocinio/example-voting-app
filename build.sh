@@ -1,3 +1,4 @@
+echo -- Creating images version ${BUILD_NUMBER} --
 cd vote
 docker build -t patrocinio/vote_vote:test-${BUILD_NUMBER} .
 cd ../result
