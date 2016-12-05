@@ -46,3 +46,4 @@ Some additional steps are required to run this application on the Bluemix Contai
 5.  Attach public IP addresses to the Vote and Result container instances  
 `cf ic ip request`  
 `cf ic ip bind [RETURNED_IP_ADDRESS] examplevotingapp_vote_1`  
+
