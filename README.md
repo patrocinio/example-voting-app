@@ -23,8 +23,6 @@ Architecture
 * A Postgres database backed by a Docker volume
 * A Node.js webapp which shows the results of the voting in real time
 
-#test
-
 ## Running on Bluemix
 
 Some additional steps are required to run this application on the Bluemix Container Service, using the Docker Compose client.
