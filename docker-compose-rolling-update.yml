@@ -2,7 +2,16 @@ version: "2"
 
 services:
   vote:
-    image: ${DTR}/vote_vote:${ENV}-${BUILD_NUMBER}
+    image: ${DTR}/vote_vote:${OLD_ENV}
+    command: python app.py
+    ports:
+      - "5000:80"
+    networks:
+      - front-tier
+      - back-tier
+
+  vote_green:
+    image: ${DTR}/vote_vote:${ENV}
     command: python app.py
     ports:
       - "5000:80"
@@ -11,7 +20,7 @@ services:
       - back-tier
 
   result:
-    image: ${DTR}/vote_result:${ENV}-${BUILD_NUMBER}
+    image: ${DTR}/vote_result:${ENV}
     command: nodemon --debug server.js
     ports:
       - "5001:80"
@@ -21,7 +30,7 @@ services:
       - back-tier
 
   worker:
-    image: ${DTR}/vote_worker:${ENV}-${BUILD_NUMBER}
+    image: ${DTR}/vote_worker:${ENV}
     networks:
       - back-tier
 
