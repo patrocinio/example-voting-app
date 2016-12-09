@@ -1,8 +1,8 @@
 version: "2"
 
 services:
-  vote:
-    image: ${DTR}/vote_vote:${ENV}-${PREVIOUS_BUILD_NUMBER}
+  vote_blue:
+    image: ${DTR}/vote_vote:${ENV}-${BUILD_NUMBER}
     command: python app.py
     ports:
       - "5000:80"

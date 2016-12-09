@@ -1,7 +1,7 @@
 version: "2"
 
 services:
-  vote:
+  vote_blue:
     image: ${DTR}/vote_vote:${ENV}-${BUILD_NUMBER}
     command: python app.py
     ports:
