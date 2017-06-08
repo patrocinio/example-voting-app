@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: vote-blue
+  name: vote-blue
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: vote-blue
+    spec:
+      containers:
+      - args:
+        - python
+        - app.py
+        image: registry.hub.docker.com/patrocinio/vote_vote:test-114
+        name: vote-blue
+        ports:
+        - containerPort: 80
+        resources: {}
+      restartPolicy: Always
+status: {}
