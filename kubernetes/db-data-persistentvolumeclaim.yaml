@@ -13,5 +13,5 @@ spec:
       storage: 100Mi
   selector:
     matchExpressions:
-      - {key: volume, operator: =, values: nfs1}
+      - {key: volume, operator: In, values: [nfs1]}
 status: {}
