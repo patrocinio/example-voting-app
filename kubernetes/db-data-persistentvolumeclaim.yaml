@@ -7,11 +7,8 @@ metadata:
   name: db-data
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   resources:
     requests:
       storage: 100Mi
-  selector:
-    matchExpressions:
-      - {key: volume, operator: In, values: [nfs1]}
 status: {}
