@@ -26,5 +26,5 @@ spec:
       volumes:
       - name: db-data
         persistentVolumeClaim:
-          claimName: db-data
+          claimName: db-data2
 status: {}
