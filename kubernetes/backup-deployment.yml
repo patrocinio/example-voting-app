@@ -18,7 +18,7 @@ spec:
         args: ["-c", "/backup_restore/vbackup"]
         env:
         - name: BACKUP_NAME
-          value: patrocinio
+          value: voting
 
         - name: BACKUP_DIRECTORY
           value: /my_backup
