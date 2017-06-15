@@ -1,0 +1,55 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: backup
+spec:
+  replicas: 1
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: backup
+
+    spec:
+      containers:
+      - name: my-backup-container
+        image: patrocinio/ibm-backup-restore
+        command: ["/bin/bash"]
+        args: ["-c", "/backup_restore/vbackup"]
+        env:
+        - name: BACKUP_NAME
+          value: patrocinio
+
+        - name: BACKUP_DIRECTORY
+          value: /my_backup
+
+        - name: PROJECTID
+          value: 0f64bd4bd6da481b8c8da6aed68a894d
+
+        - name: REGION
+          value: dallas
+
+        - name: USERID
+          value: 266d2076dfa94512ab6133f1f2bebce5
+
+        - name: PASSWORD
+          value: M!KiQ3.Cp4r3WVdK
+
+        - name: SCHEDULE_TYPE
+          value: periodic
+
+        - name: SCHEDULE_INFO
+          value: daily
+
+        - name: BACKUP_TYPE
+          value: incremental
+
+        volumeMounts:
+          - mountPath: /my_backup
+            name: db-data
+
+      volumes:
+      - name: db-data
+        persistentVolumeClaim:
+          claimName: db-data
+
